@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #D4AF37; /* More natural metallic gold */
+  --color-gold-dark: #996515;
+  --color-gold-light: #F4E0A1;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --chart-grid: #e2e8f0;
+  --chart-text: #64748b;
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: #D4AF3733;
+}
+
+/* Explicitly define dark variant for class-based dark mode in Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --chart-grid: #1e293b;
+  --chart-text: #94a3b8;
+  --chart-tooltip-bg: #0f172a;
+  --chart-tooltip-border: #D4AF3722;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans transition-colors duration-300 antialiased;
+  }
+
+  .dark body {
+    @apply bg-slate-950 text-slate-200;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+
+  .dark .glass-card {
+    @apply bg-slate-900/60 border-white/5 shadow-none;
+  }
+
+  .dark header {
+    @apply bg-slate-950/80 border-white/5;
+  }
+
+  .dark aside {
+    @apply bg-slate-950 border-white/5;
+  }
+
+  .dark input, .dark select, .dark textarea {
+    @apply bg-slate-900 border-white/10 text-slate-200;
+  }
+}
+
+@layer components {
+  .golden-outline-emoji {
+    @apply text-transparent;
+    -webkit-text-stroke: 1px var(--color-gold);
+    opacity: 0.8;
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-slate-200/50 rounded-2xl shadow-sm;
+  }
+
+  .btn-gold {
+    @apply bg-gold text-slate-900 px-6 py-2.5 rounded-xl font-semibold hover:bg-gold-dark hover:text-white transition-all duration-300 shadow-md;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gold/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold/50;
+}
